@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_registration.*
+import kotlinx.android.synthetic.main.activity_registration.btnRegistration
 import kotlinx.coroutines.launch
 
 class RegistrationActivity : AppCompatActivity() {
@@ -20,6 +23,7 @@ class RegistrationActivity : AppCompatActivity() {
                 val password = registrationPassword.text?.toString().orEmpty()
                 val repeatPassword = repeatPassword.text?.toString().orEmpty()
                 when {
+
                     !isValidUsername(enterLogin.text.toString()) -> {
                         Toast.makeText(this@RegistrationActivity, "Не корректный логин", Toast.LENGTH_LONG).show()
                     }

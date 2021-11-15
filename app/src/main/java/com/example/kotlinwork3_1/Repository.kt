@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object Repository {
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://ncraftmedia.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build()
+            .baseUrl("http://127.6.0.8:8080").addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     private val api: Api by lazy {
