@@ -53,15 +53,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         btnRegistration.setOnClickListener {
-            navigateToRegistration()
+            val intent = Intent(this@MainActivity, RegistrationActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
-    private fun navigateToRegistration() {
-        val intent = Intent(this@MainActivity, RegistrationActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
+
 
     private fun isAuthenticated(): Boolean =
         getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
