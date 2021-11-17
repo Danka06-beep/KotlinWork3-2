@@ -57,14 +57,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        if(authenticated()){
+            val intent = Intent(this@MainActivity, Post::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
-
-
-
-    private fun isAuthenticated(): Boolean =
-        getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
-            AUTHENTICATED_SHARED_KEY, ""
-        )?.isNotEmpty() ?: false
+    private fun authenticated(): Boolean = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(AUTHENTICATED_SHARED_KEY, "")?.isNotEmpty() ?: false
 
     private fun setUserAuth(token: String) =
         getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).edit().putString(AUTHENTICATED_SHARED_KEY, token).apply()

@@ -3,6 +3,7 @@ package com.example.kotlinwork3_1
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -22,31 +23,26 @@ class RegistrationActivity : AppCompatActivity() {
                 val login = registrationLogin.text?.toString().orEmpty()
                 val password = registrationPassword.text?.toString().orEmpty()
                 val repeatPassword = repeatPassword.text?.toString().orEmpty()
+                if(password == ""){
+                    Toast.makeText(this@RegistrationActivity, "Введите пароль", Toast.LENGTH_LONG).show()
+                    Log.d("MyLog","Отработан пароль ")
+                }
+                if(login == ""){
+                    Toast.makeText(this@RegistrationActivity, "Ведите Логин", Toast.LENGTH_LONG).show()
+                    Log.d("MyLog","Отработан логин ")
+                }
+                if(repeatPassword == ""){
+                    Toast.makeText(this@RegistrationActivity, "Повторите пароль", Toast.LENGTH_LONG).show()
+                    Log.d("MyLog","Отработан повтор пароля ")
+                }
                 when {
-
-                    !isValidUsername(enterLogin.text.toString()) -> {
+                    !isValidUsername(registrationLogin.text.toString()) -> {
                         Toast.makeText(this@RegistrationActivity, "Не корректный логин", Toast.LENGTH_LONG).show()
                     }
-                    !isValidPassword(enterPassword.text.toString()) -> {
+                    !isValidPassword(registrationPassword.text.toString()) -> {
                         Toast.makeText(this@RegistrationActivity, "Не корректный пароль", Toast.LENGTH_LONG).show()
                     }
-                    login == "" -> {
-                        Toast.makeText(this@RegistrationActivity, "Ведите Логин", Toast.LENGTH_LONG).show()
-                    }
-                    password == "" -> {
-                        Toast.makeText(
-                            this@RegistrationActivity,
-                            "Введите пароль",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                    repeatPassword == "" -> {
-                        Toast.makeText(
-                            this@RegistrationActivity,
-                            "повторите пароль",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+
                     else -> {
                         dialog = ProgressDialog(this@RegistrationActivity).apply {
                             Toast.makeText(this@RegistrationActivity, "Пожалуйста подождите", Toast.LENGTH_LONG).show()
@@ -56,8 +52,6 @@ class RegistrationActivity : AppCompatActivity() {
                         }
                         try {
                             Repository.register(login, password)
-
-
                             dialog?.dismiss()
                             val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
                             startActivity(intent)

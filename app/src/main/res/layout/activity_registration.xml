@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:hint="passwoed"
+        android:hint="password"
         app:layout_constraintBottom_toTopOf="@+id/til_registration_repeat_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
