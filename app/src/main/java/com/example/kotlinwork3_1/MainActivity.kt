@@ -27,8 +27,7 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     lifecycleScope.launch {
                         dialog = ProgressDialog(this@MainActivity).apply {
-                            Toast.makeText(this@MainActivity, "Пожалуйста подождите", Toast.LENGTH_LONG).show()
-                            Toast.makeText(this@MainActivity, "Идёт загрузка данных", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity, "Вы вошли успешно", Toast.LENGTH_LONG).show()
                             setCancelable(false)
                         }
 
