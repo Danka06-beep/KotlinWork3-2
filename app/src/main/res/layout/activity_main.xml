@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="login"
+            android:hint="@string/loginxm"
             android:inputType="text"
             android:maxLength="10" />
 
@@ -43,7 +43,7 @@
             android:id="@+id/enterPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/passwordxm"
             android:inputType="textPassword"
             android:maxLength="15" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_password"
-        android:text="authentication" />
+        android:text="@string/authentication" />
 
     <Button
         android:id="@+id/btnRegistration"
@@ -67,6 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        android:text="registration" />
+        android:text="@string/registration" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

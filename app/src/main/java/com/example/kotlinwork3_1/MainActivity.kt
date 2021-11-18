@@ -19,15 +19,18 @@ class MainActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             when {
                 !isValidUsername(enterLogin.text.toString()) -> {
-                    Toast.makeText(this@MainActivity, "Не корректный логин", Toast.LENGTH_LONG).show()
+
+
+
+                    Toast.makeText(this@MainActivity, getString(R.string.Invalidlogin), Toast.LENGTH_LONG).show()
                 }
                 !isValidPassword(enterPassword.text.toString()) -> {
-                    Toast.makeText(this@MainActivity, "Не корректный пароль", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity, getString(R.string.InvalidPassword), Toast.LENGTH_LONG).show()
                 }
                 else -> {
                     lifecycleScope.launch {
                         dialog = ProgressDialog(this@MainActivity).apply {
-                            Toast.makeText(this@MainActivity, "Вы вошли успешно", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity, getString(R.string.good), Toast.LENGTH_LONG).show()
                             setCancelable(false)
                         }
 
@@ -41,10 +44,10 @@ class MainActivity : AppCompatActivity() {
                             if (token.isSuccessful) {
                                 setUserAuth(requireNotNull(token.body()).toString())
                             } else {
-                                Toast.makeText(this@MainActivity, "Ошибка авторизации", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@MainActivity, getString(R.string.erorAuthorization), Toast.LENGTH_LONG).show()
                             }
                         } catch (e: Exception) {
-                            Toast.makeText(this@MainActivity, "Ошибка подключения", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity, getString(R.string.erorConnect), Toast.LENGTH_LONG).show()
                             dialog?.dismiss()
                         }
                     }

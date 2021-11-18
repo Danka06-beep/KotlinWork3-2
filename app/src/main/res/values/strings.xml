@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">KotlinWork3-1</string>
+    <string name="good">Вы вошли успешно</string>
+    <string name="erorAuthorization">Ошибка авторизации</string>
+    <string name="erorConnect">Ошибка подключения</string>
+    <string name="Invalidlogin">Не корректный логин</string>
+    <string name="InvalidPassword">Не корректный пароль</string>
+    <string name="loadData">Пожалуйста подождите идёт загрузка данных</string>
+    <string name="password">Введите пароль</string>
+    <string name="login">Ведите Логин</string>
+    <string name="repeatPassword">Повторите пароль</string>
+    <string name="authentication">authentication</string>
+    <string name="passwordxm">Password</string>
+    <string name="loginxm">login</string>
+    <string name="registration">registration</string>
+    <string name="repeat_password">Repeat password</string>
 </resources>

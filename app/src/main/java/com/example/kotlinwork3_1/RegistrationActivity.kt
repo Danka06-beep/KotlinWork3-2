@@ -24,29 +24,30 @@ class RegistrationActivity : AppCompatActivity() {
                 val password = registrationPassword.text?.toString().orEmpty()
                 val repeatPassword = repeatPassword.text?.toString().orEmpty()
                 if(password == ""){
-                    Toast.makeText(this@RegistrationActivity, "Введите пароль", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@RegistrationActivity, getString(R.string.password), Toast.LENGTH_LONG).show()
                     Log.d("MyLog","Отработан пароль ")
                 }
                 if(login == ""){
-                    Toast.makeText(this@RegistrationActivity, "Ведите Логин", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@RegistrationActivity, getString(R.string.login), Toast.LENGTH_LONG).show()
                     Log.d("MyLog","Отработан логин ")
                 }
                 if(repeatPassword == ""){
-                    Toast.makeText(this@RegistrationActivity, "Повторите пароль", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@RegistrationActivity, getString(R.string.repeatPassword), Toast.LENGTH_LONG).show()
                     Log.d("MyLog","Отработан повтор пароля ")
                 }
                 when {
                     !isValidUsername(registrationLogin.text.toString()) -> {
-                        Toast.makeText(this@RegistrationActivity, "Не корректный логин", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@RegistrationActivity, getString(R.string.Invalidlogin), Toast.LENGTH_LONG).show()
                     }
                     !isValidPassword(registrationPassword.text.toString()) -> {
-                        Toast.makeText(this@RegistrationActivity, "Не корректный пароль", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@RegistrationActivity, getString(R.string.InvalidPassword), Toast.LENGTH_LONG).show()
                     }
 
                     else -> {
                         dialog = ProgressDialog(this@RegistrationActivity).apply {
-                            Toast.makeText(this@RegistrationActivity, "Пожалуйста подождите", Toast.LENGTH_LONG).show()
-                            Toast.makeText(this@RegistrationActivity, "Идёт загрузка данных", Toast.LENGTH_LONG).show()
+
+                            Toast.makeText(this@RegistrationActivity, getString(R.string.loadData), Toast.LENGTH_LONG).show()
+
 
                             setCancelable(false)
                         }
@@ -57,7 +58,7 @@ class RegistrationActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         } catch (e: Exception) {
-                            Toast.makeText(this@RegistrationActivity, "Ошибка соединения", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@RegistrationActivity, getString(R.string.erorConnect), Toast.LENGTH_LONG).show()
                             dialog?.dismiss()
                         }
 
