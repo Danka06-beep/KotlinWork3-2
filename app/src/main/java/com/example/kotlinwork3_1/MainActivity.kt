@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                         val password = enterPassword.text?.toString().orEmpty()
                         try {
                             val token = Repository.authenticate(login, password)
-
+                            goToPost()
                             dialog?.dismiss()
                             if (token.isSuccessful) {
                                 setUserAuth(requireNotNull(token.body()).toString())
@@ -57,12 +57,15 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        if(authenticated()){
-            val intent = Intent(this@MainActivity, Post::class.java)
+    }
+    private fun goToPost() {
+        if (authenticated()) {
+            val intent = Intent(this@MainActivity, PostActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
+
     private fun authenticated(): Boolean = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(AUTHENTICATED_SHARED_KEY, "")?.isNotEmpty() ?: false
 
     private fun setUserAuth(token: String) =

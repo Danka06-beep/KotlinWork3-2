@@ -11,7 +11,6 @@ data class Token(val token: String)
 
 data class RegistrationRequestParams(val username: String, val password: String)
 
-
 interface Api {
 
     @POST("api/v1/authentication")

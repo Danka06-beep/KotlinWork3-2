@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object Repository {
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("http://0.0.0.0:8080").addConverterFactory(GsonConverterFactory.create()).build()
+            .baseUrl("http://10.0.2.2:8080").addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     private val api: Api by lazy {
