@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             when {
                 !isValidUsername(enterLogin.text.toString()) -> {
-
-
-
                     Toast.makeText(this@MainActivity, getString(R.string.Invalidlogin), Toast.LENGTH_LONG).show()
                 }
                 !isValidPassword(enterPassword.text.toString()) -> {
@@ -30,8 +27,6 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     lifecycleScope.launch {
                         dialog = ProgressDialog(this@MainActivity).apply {
-                            Toast.makeText(this@MainActivity, getString(R.string.good), Toast.LENGTH_LONG).show()
-                            setCancelable(false)
                         }
 
 

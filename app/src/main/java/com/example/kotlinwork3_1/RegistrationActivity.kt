@@ -42,21 +42,22 @@ class RegistrationActivity : AppCompatActivity() {
                     !isValidPassword(registrationPassword.text.toString()) -> {
                         Toast.makeText(this@RegistrationActivity, getString(R.string.InvalidPassword), Toast.LENGTH_LONG).show()
                     }
-
                     else -> {
                         dialog = ProgressDialog(this@RegistrationActivity).apply {
-
                             Toast.makeText(this@RegistrationActivity, getString(R.string.loadData), Toast.LENGTH_LONG).show()
-
-
                             setCancelable(false)
                         }
                         try {
-                            Repository.register(login, password)
                             dialog?.dismiss()
-                            val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            val request = Repository.register(login, password)
+                            if(request.errorBody() != null){
+                                Toast.makeText(this@RegistrationActivity, request.errorBody()!!.string() , Toast.LENGTH_LONG).show()
+                            }else{
+                                dialog?.dismiss()
+                                val intent = Intent(this@RegistrationActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                         } catch (e: Exception) {
                             Toast.makeText(this@RegistrationActivity, getString(R.string.erorConnect), Toast.LENGTH_LONG).show()
                             dialog?.dismiss()
