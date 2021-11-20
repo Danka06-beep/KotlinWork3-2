@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">KotlinWork3-1</string>
     <string name="good">Вы вошли успешно</string>
-    <string name="erorAuthorization">Ошибка авторизации</string>
+    <string name="erorAuthorization">Неверный логин или пароль</string>
     <string name="erorConnect">Ошибка подключения</string>
     <string name="Invalidlogin">Не корректный логин</string>
     <string name="InvalidPassword">Не корректный пароль</string>
