@@ -27,17 +27,18 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     lifecycleScope.launch {
                         dialog = ProgressDialog(this@MainActivity).apply {
+                            Toast.makeText(this@MainActivity,"Выполнен вход", Toast.LENGTH_LONG).show()
                         }
-
 
                         val login = enterLogin.text?.toString().orEmpty()
                         val password = enterPassword.text?.toString().orEmpty()
                         try {
                             val token = Repository.authenticate(login, password)
-                            goToPost()
+                            setUserAuth(requireNotNull(token.body()).toString())
+
                             dialog?.dismiss()
                             if (token.isSuccessful) {
-                                setUserAuth(requireNotNull(token.body()).toString())
+                                goToPost()
                             } else {
                                 Toast.makeText(this@MainActivity, getString(R.string.erorAuthorization), Toast.LENGTH_LONG).show()
                             }
