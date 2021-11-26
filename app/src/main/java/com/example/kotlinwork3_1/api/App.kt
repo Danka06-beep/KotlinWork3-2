@@ -21,7 +21,7 @@ class App : Application() {
         super.onCreate()
 
         val httpLoggerInterceptor = HttpLoggingInterceptor()
-        // Указываем, что хотим логировать тело запроса.
+
         httpLoggerInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder()
             .addInterceptor(InjectAuthTokenInterceptor {
