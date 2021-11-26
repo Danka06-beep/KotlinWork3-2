@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinWork31"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PostActivity"></activity>
+        <activity android:name=".tool.tool_new_post"></activity>
+        <activity android:name=".tool.tool_post" />
+        <activity android:name=".CreatePostActivity" />
+        <activity android:name=".PostActivity" />
         <activity
             android:name=".RegistrationActivity"
             android:windowSoftInputMode="adjustResize" />

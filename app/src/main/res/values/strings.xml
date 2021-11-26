@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">KotlinWork3-1</string>
+    <string name="create_new_post">Создание поста</string>
+    <string name="enter_your_post_content">Введите текст</string>
+    <string name="create">Создать</string>
     <string name="good">Вы вошли успешно</string>
     <string name="erorAuthorization">Неверный логин или пароль</string>
     <string name="erorConnect">Ошибка подключения</string>
@@ -13,5 +16,6 @@
     <string name="passwordxm">Password</string>
     <string name="loginxm">login</string>
     <string name="registration">registration</string>
+    <string name="load_new_post">загрузка новых постов</string>
     <string name="repeat_password">Repeat password</string>
 </resources>

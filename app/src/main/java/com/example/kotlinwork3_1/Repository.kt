@@ -33,6 +33,5 @@ object Repository {
     }
     suspend fun authenticate(login: String, password: String) = api.authenticate(AuthRequestParams(login, password))
 
-    suspend fun register(login: String, password: String) =
-        api.register(RegistrationRequestParams(login, password))
+    suspend fun register(login: String, password: String) = api.register(RegistrationRequestParams(login, password))
 }
