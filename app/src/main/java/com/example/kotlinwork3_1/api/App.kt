@@ -2,10 +2,7 @@ package com.example.kotlinwork3_1.api
 
 import android.app.Application
 import android.content.Context
-import com.example.kotlinwork3_1.API_SHARED_FILE
-import com.example.kotlinwork3_1.AUTHENTICATED_SHARED_KEY
-import com.example.kotlinwork3_1.InjectAuthTokenInterceptor
-import com.example.kotlinwork3_1.Repository
+import com.example.kotlinwork3_1.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -35,7 +32,9 @@ class App : Application() {
             .client(client).
             addConverterFactory(GsonConverterFactory.create())
             .build()
+        val api = retrofit.create(Api::class.java)
 
+        repository = NetworkRepository(api)
 
 
 

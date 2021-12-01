@@ -1,12 +1,14 @@
 package com.example.kotlinwork3_1.dto
 
+import com.example.kotlinwork3_1.BASE_URL
+
 data class PostModel(val id: Long = 0,
                      val author: String? = null,
                      val data: Long = 0,
-                     val txt: String? = null,
+                     var txt: String? = null,
                      var like: Boolean = false,
                      val comment: Boolean = false,
-                     val share: Boolean = false,
+                     var share: Boolean = false,
                      var likeTxt: Int = 0,
                      val commentTxt: Int = 0,
                      val shareTxt: Int = 0,
@@ -17,17 +19,32 @@ data class PostModel(val id: Long = 0,
                      val dateRepost: Long? = null,
                      val autorRepost: String? = null,
                      var hidePost: Boolean = false,
-                     var viewPost: Long = 0
+                     var viewPost: Long = 0,
+                     val repost: PostModel? = null,
+                     val attachment: AttachmentModel?
 ) {
+    var likeActionPerforming = false
+    var repostActionPerforming = false
+
+    fun updatePost(updatedModel: PostModel) {
+        if (id != updatedModel.id) throw IllegalAccessException("Идентификаторы разные")
+        like = updatedModel.like
+        like = updatedModel.like
+        txt = updatedModel.txt
+        share = updatedModel.share
+
+    }
+
+    enum class PostTypes {
+        POST, REPOST
+    }
+
+    enum class AttachmentType {
+        IMAGE, AUDIO, VIDEO
+    }
+
+    data class AttachmentModel(val id: String, val mediaType: AttachmentType) {
+        val url
+            get() = "$BASE_URL/api/v1/$id"
+    }
 }
-enum class PostTypes {
-    POST, REPOST
-}
-enum class AttachmentType {
-    IMAGE, AUDIO, VIDEO
-}
-data class AttachmentModel(
-    val id: String,
-    val url: String,
-    val type: AttachmentType
-)

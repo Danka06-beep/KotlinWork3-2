@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.example.kotlinwork3_1.api.App
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                         val login = enterLogin.text?.toString().orEmpty()
                         val password = enterPassword.text?.toString().orEmpty()
                         try {
-                            val token = Repository.authenticate(login, password)
+                            val token = App.repository.authenticate(login, password)
 
                             dialog?.dismiss()
                             if (token.isSuccessful) {
@@ -54,7 +55,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
     }
+
     private fun goToPost() {
         if (authenticated()) {
             val intent = Intent(this@MainActivity, PostActivity::class.java)
@@ -67,6 +70,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUserAuth(token: String) =
         getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).edit().putString(AUTHENTICATED_SHARED_KEY, token).apply()
+
+
     }
 
 

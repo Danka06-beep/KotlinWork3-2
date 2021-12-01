@@ -8,6 +8,14 @@
     <string name="erorConnect">Ошибка подключения</string>
     <string name="Invalidlogin">Не корректный логин</string>
     <string name="InvalidPassword">Не корректный пароль</string>
+    <string name="creat_repost">Создание поста</string>
+    <string name="post_created_successfully">Пост создан</string>
+    <string name="error_occured">Произошла ошибка</string>
+    <string name="download_post">загрузка поста</string>
+    <string name="repost_repost">Не могу сделать репост репоста</string>
+    <string name="error_upload">Ошибка в загрузке изображения</string>
+    <string name="more_post">Загрузить больше постов</string>
+    <string name="please_wait">Пожалуйста подождите</string>
     <string name="loadData">Пожалуйста подождите идёт загрузка данных</string>
     <string name="password">Введите пароль</string>
     <string name="login">Ведите Логин</string>

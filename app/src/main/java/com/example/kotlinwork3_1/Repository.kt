@@ -1,37 +1,29 @@
 package com.example.kotlinwork3_1
 
+import android.graphics.Bitmap
 import android.util.Log
-import com.example.kotlinwork3_1.api.Api
-import com.example.kotlinwork3_1.api.AuthRequestParams
-import com.example.kotlinwork3_1.api.RegistrationRequestParams
+import com.example.kotlinwork3_1.api.*
+import com.example.kotlinwork3_1.dto.PostModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object Repository {
+interface Repository {
 
-    private val clinet: OkHttpClient by lazy {
-        OkHttpClient.Builder().addInterceptor(
-            HttpLoggingInterceptor({
-                Log.d("MyLog", "$it")
-            }).apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            }
-        ).build()
-    }
+    suspend fun getPosts(): Response<List<PostModel>>
+    suspend fun likedByMe(id: Long): Response<PostModel>
+    suspend fun cancelMyLike(id: Long): Response<PostModel>
+    suspend fun createPost(content: String, attachmentModel: PostModel.AttachmentModel?):Response<Void>
+    suspend fun createRepost(content: String, contentRepost:PostModel): Response<Void>
+    suspend fun getPostsAfter(id: Long):Response<List<PostModel>>
+    suspend fun getPostsOld(id: Long):Response<List<PostModel>>
+    suspend fun upload(bitmap: Bitmap): Response<PostModel.AttachmentModel>
+    suspend fun registerPushToken(token: String) : Response<User>
+    suspend fun getPostId(id: Long): Response<PostModel>
 
+    suspend fun authenticate(login: String, password: String):Response<Token>
 
-    private val retrofit: Retrofit by lazy {
-        Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8080").addConverterFactory(GsonConverterFactory.create())
-            .client(clinet).build()
-    }
-
-    private val api: Api by lazy {
-        retrofit.create(Api::class.java)
-    }
-    suspend fun authenticate(login: String, password: String) = api.authenticate(AuthRequestParams(login, password))
-
-    suspend fun register(login: String, password: String) = api.register(RegistrationRequestParams(login, password))
+    suspend fun register(login: String, password: String):Response<Token>
 }

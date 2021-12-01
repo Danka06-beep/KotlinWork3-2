@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.kotlinwork3_1.api.App
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.activity_registration.btnRegistration
@@ -49,7 +50,7 @@ class RegistrationActivity : AppCompatActivity() {
                         }
                         try {
                             dialog?.dismiss()
-                            val request = Repository.register(login, password)
+                            val request = App.repository.register(login, password)
                             if(request.errorBody() != null){
                                 Toast.makeText(this@RegistrationActivity, request.errorBody()!!.string() , Toast.LENGTH_LONG).show()
                             }else{
