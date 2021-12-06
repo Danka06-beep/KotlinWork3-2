@@ -11,7 +11,7 @@
     android:layout_marginTop="16dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
-    android:padding="16dp">
+    android:padding="30dp">
     <ImageView
         android:id="@+id/avatarIv"
         android:layout_width="48dp"
@@ -59,69 +59,60 @@
         android:id="@+id/likeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="148dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_baseline_no_favorite_border_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/likesTv"
-        app:layout_constraintTop_toBottomOf="@+id/mediaContainer"
-        app:layout_constraintVertical_bias="0.274" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mediaContainer" />
 
     <TextView
         android:id="@+id/likesTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="280dp"
         android:text="0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/commentBtn"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn"
-        android:layout_marginRight="32dp" />
+        app:layout_constraintStart_toEndOf="@+id/likeBtn" />
 
     <ImageButton
         android:id="@+id/commentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="148dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/commentsTv"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn"
         android:src="@drawable/ic_baseline_comment_24"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintStart_toEndOf="@+id/likesTv"
+        app:layout_constraintTop_toBottomOf="@+id/mediaContainer" />
 
     <TextView
         android:id="@+id/commentsTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/shareBtn"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn"
-        tools:text="0"
-        android:layout_marginRight="32dp" />
+        app:layout_constraintStart_toEndOf="@+id/commentBtn"
+        tools:text="0" />
 
     <ImageButton
         android:id="@+id/shareBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="148dp"
         android:background="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/repostsTv"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn"
         android:src="@drawable/ic_baseline_no_share_24"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintStart_toEndOf="@+id/commentsTv"
+        app:layout_constraintTop_toBottomOf="@+id/mediaContainer" />
 
     <TextView
         android:id="@+id/repostsTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/likeBtn"
+        app:layout_constraintStart_toEndOf="@+id/shareBtn"
         tools:text="0" />
 
     <FrameLayout

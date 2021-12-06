@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_post.*
 import kotlinx.android.synthetic.main.activity_tool_new_post.*
 import kotlinx.android.synthetic.main.activity_tool_new_post.progressbar
 import kotlinx.android.synthetic.main.tool_more.*
-import kotlinx.coroutines.NonCancellable.start
 import kotlinx.coroutines.launch
 
 class PostActivity : AppCompatActivity() ,
@@ -42,7 +41,7 @@ class PostActivity : AppCompatActivity() ,
             val newData = App.repository.getPosts()
             swipeContainer.isRefreshing = false
             if (newData.isSuccessful) {
-                adapter?.newRecentPosts(newData.body()!!)
+                adapter.newRecentPosts(newData.body()!!)
             }
         }
     }
@@ -81,9 +80,9 @@ class PostActivity : AppCompatActivity() ,
             with(container) {
                 adapter?.notifyItemChanged(position)
                 val response = if (item.like) {
-                    App.repository.cancelMyLike(item.id.toLong())
+                    App.repository.cancelMyLike(item.id)
                 } else {
-                    App.repository.likedByMe(item.id.toLong())
+                    App.repository.likedByMe(item.id)
                 }
                 item.likeActionPerforming = false
                 if (response.isSuccessful) {
@@ -94,13 +93,13 @@ class PostActivity : AppCompatActivity() ,
         }
     }
 
-    override fun onRepostsBtnClicked(item: PostModel, position: Int, content: String) {
+    override fun onRepostsBtnClicked(item: PostModel, position: Int, it: String) {
 
         lifecycleScope.launch {
             item.repostActionPerforming = true
             with(container) {
                 adapter?.notifyItemChanged(position)
-                val response = App.repository.createRepost(content, item)
+                val response = App.repository.createRepost(it, item)
                 item.repostActionPerforming = false
             }
         }

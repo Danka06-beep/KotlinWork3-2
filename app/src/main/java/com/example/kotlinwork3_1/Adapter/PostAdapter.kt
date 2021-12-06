@@ -2,6 +2,7 @@ package com.example.kotlinwork3_1.Adapter
 
 import android.app.AlertDialog
 import android.content.Context
+
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,7 +39,7 @@ class PostAdapter (val list: MutableList<PostModel>) :
     private val ITEM_FOOTER = 3;
 
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_TYPE_POST) {
             val postView =
@@ -59,7 +60,7 @@ class PostAdapter (val list: MutableList<PostModel>) :
     override fun getItemCount() = list.size + 1
 
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val postIndex = position
         when (holder) {
@@ -124,7 +125,11 @@ class RepostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.View
                 val currentPosition = adapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[currentPosition]
+                    if (item.likeActionPerforming) {
+                        context.getString(R.string.progress)
+                    } else {
                         adapter.likeBtnClickListener?.onLikeBtnClicked(item, currentPosition)
+                    }
                 }
             }
         }
@@ -168,7 +173,7 @@ class RepostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.View
 
 }
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
 class PostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.ViewHolder(view) {
     init {
         with(itemView) {
@@ -176,13 +181,20 @@ class PostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.ViewHo
                 val currentPosition = adapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[currentPosition ]
+                    if (item.likeActionPerforming) {
+                        context.getString(R.string.progress)
+                    } else {
                         adapter.likeBtnClickListener?.onLikeBtnClicked(item, currentPosition)
+                    }
                 }
             }
             shareBtn.setOnClickListener {
                 val currentPosition = adapterPosition
                 if (currentPosition != RecyclerView.NO_POSITION) {
                     val item = adapter.list[adapterPosition]
+                    if (item.share) {
+                        context.getString(R.string.repost_repost)
+                    } else {
                         showDialog(context) {
                             adapter.repostsBtnClickListener?.onRepostsBtnClicked(
                                 item,
@@ -190,6 +202,7 @@ class PostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.ViewHo
                                 it
                             )
                         }
+                    }
                 }
             }
         }
@@ -231,7 +244,6 @@ class PostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.ViewHo
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun showDialog(context: Context, createBtnClicked: (content: String) -> Unit) {
         val dialog = AlertDialog.Builder(context)
             .setView(R.layout.activity_repost)

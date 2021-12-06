@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
                             dialog?.dismiss()
                             if (token.isSuccessful) {
-                                setUserAuth(requireNotNull(token.body()).toString())
+                                setUserAuth(requireNotNull(token.body()).token)
                                 goToPost()
                             } else {
                                 Toast.makeText(this@MainActivity, getString(R.string.erorAuthorization), Toast.LENGTH_LONG).show()

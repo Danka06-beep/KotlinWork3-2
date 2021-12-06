@@ -29,10 +29,10 @@ class NetworkRepository(private val api: Api): Repository {
         api.cancelMyLike(id)
 
     override suspend fun createPost(content: String, attachmentModel: PostModel.AttachmentModel?): Response<Void> =
-        api.createPost(CreatePostRequest(postResurse = content, attachment = attachmentModel))
+        api.createPost(CreatePostRequest(txt = content, attachment = attachmentModel))
 
     override suspend fun createRepost(content: String, contentRepost: PostModel): Response<Void> =
-        api.createRepost(CreateRepostRequest(postResurse = content, repostResurs = contentRepost))
+        api.createRepost(CreateRepostRequest(txt = content, repostTxt = contentRepost))
 
     override suspend fun getPostsAfter(id: Long): Response<List<PostModel>> =
         api.getPostsAfter(id)

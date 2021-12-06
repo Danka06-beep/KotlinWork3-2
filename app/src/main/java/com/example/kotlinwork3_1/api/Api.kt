@@ -17,38 +17,35 @@ interface Api {
 
     @POST("api/v1/authentication")
     suspend fun authenticate(@Body authRequestParams: AuthRequestParams): Response<Token>
-
     @POST("api/v1/registration")
     suspend fun register(@Body registrationRequestParams: RegistrationRequestParams): Response<Token>
-
     @POST("api/v1/media")
     suspend fun uploadImage(@Part file: MultipartBody.Part): Response<PostModel.AttachmentModel>
-
-    @GET("api/v1/posts/recent")
+    @GET("api/v1/posts")
     suspend fun getPosts(): Response<List<PostModel>>
-    @POST("api/v1/posts/{id}/likes")
+    @POST("api/v1/{id}/like")
     suspend fun likedByMe(@Path("id") id: Long): Response<PostModel>
-    @DELETE("api/v1/posts/{id}/likes")
+    @DELETE("api/v1/{id}/like")
     suspend fun cancelMyLike(@Path("id") id: Long): Response<PostModel>
-    @POST("api/v1/posts/new")
+    @POST("api/v1/new")
     suspend fun createPost(@Body createPostRequest: CreatePostRequest): Response<Void>
     @POST("api/v1/repost")
     suspend fun createRepost(@Body createRepostRequest: CreateRepostRequest): Response<Void>
     @POST("api/v1/posts/After")
     suspend fun getPostsAfter(@Body id:Long): Response<List<PostModel>>
-    @POST("api/v1/posts/old")
+    @POST("api/v1/old")
     suspend fun getPostsOld(@Body id:Long): Response<List<PostModel>>
     @POST("api/v1/push")
     suspend fun registerPushToken(@Header("Authorization") token: String, @Body pushRequestParams: PushRequestParams): Response<User>
-    @GET("api/v1//posts/{id}")
+    @GET("api/v1/{id}")
     suspend fun getPostId(@Path("id") id: Long): Response<PostModel>
 }
 data class CreatePostRequest(
     val id: Long = 0,
-    val postResurse: String,
+    val txt: String,
     val attachment: PostModel.AttachmentModel? = null
 )
-data class CreateRepostRequest(val id: Long = 0, val postResurse: String, val repostResurs: PostModel)
+data class CreateRepostRequest(val id: Long = 0, val txt: String, val repostTxt: PostModel)
 
 data class PushRequestParams(val token: String)
 

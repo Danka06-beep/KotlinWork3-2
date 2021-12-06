@@ -29,8 +29,9 @@ class App : Application() {
             .addInterceptor(httpLoggerInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .client(client).
-            addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .baseUrl("$BASE_URL/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
         val api = retrofit.create(Api::class.java)
 
