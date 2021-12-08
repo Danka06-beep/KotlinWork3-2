@@ -137,8 +137,8 @@ class RepostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.View
             authorTv.text = post.author
             contentRp.text = post.txt
             contentTv.text = post.repost?.txt
-            likesTv.text = post.like.toString()
-            repostsTv.text = post.share.toString()
+            likesTv.text = post.likeTxt.toString()
+            repostsTv.text = post.shareTxt.toString()
             autorRP.text = post.author
 
             when {
@@ -209,8 +209,8 @@ class PostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.ViewHo
         with(itemView) {
             authorTv.text = post.author
             contentTv.text = post.txt
-            likesTv.text = post.like.toString()
-            repostsTv.text = post.share.toString()
+            likesTv.text = post.likeTxt.toString()
+            repostsTv.text = post.shareTxt.toString()
 
             when {
                 post.likeActionPerforming -> likeBtn.setImageResource(R.drawable.ic_baseline_favorite_border_24)
