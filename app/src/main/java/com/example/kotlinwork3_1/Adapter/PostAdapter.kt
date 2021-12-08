@@ -3,22 +3,17 @@ package com.example.kotlinwork3_1.Adapter
 import android.app.AlertDialog
 import android.content.Context
 
-import android.os.Build
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.kotlinwork3_1.R
 import com.example.kotlinwork3_1.dto.PostModel
 import kotlinx.android.synthetic.main.activity_repost.*
-import kotlinx.android.synthetic.main.activity_tool_new_post.view.*
-import kotlinx.android.synthetic.main.activity_tool_new_post.view.progressbar
 import kotlinx.android.synthetic.main.activity_tool_post.view.*
 import kotlinx.android.synthetic.main.activity_tool_post.view.authorTv
 import kotlinx.android.synthetic.main.activity_tool_post.view.contentTv
@@ -27,6 +22,8 @@ import kotlinx.android.synthetic.main.activity_tool_post.view.likesTv
 import kotlinx.android.synthetic.main.activity_tool_post.view.repostsTv
 import kotlinx.android.synthetic.main.activity_tool_post.view.shareBtn
 import kotlinx.android.synthetic.main.activity_tool_repost.view.*
+
+
 import kotlinx.android.synthetic.main.tool_more.view.*
 
 class PostAdapter (val list: MutableList<PostModel>) :

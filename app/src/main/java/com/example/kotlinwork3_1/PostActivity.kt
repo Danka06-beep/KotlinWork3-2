@@ -133,13 +133,10 @@ class PostActivity : AppCompatActivity() ,
             Helper.comeBackNotification(this)
             setNotFirstTime(this)
         }
-
     }
 
     fun goToNewPost() {
             val intent = Intent(this@PostActivity, CreatePostActivity::class.java)
             startActivity(intent)
-            finish()
     }
-
 }
