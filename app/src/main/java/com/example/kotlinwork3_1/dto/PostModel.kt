@@ -11,7 +11,7 @@ data class PostModel(val id: Long = 0,
                      var share: Boolean = false,
                      var likeTxt: Int = 0,
                      val commentTxt: Int = 0,
-                     val shareTxt: Int = 0,
+                     var shareTxt: Int = 0,
                      val adress: String? = null,
                      val coordinates: Pair<Double, Double>? = null,
                      val type: PostTypes = PostTypes.REPOST,
@@ -28,10 +28,11 @@ data class PostModel(val id: Long = 0,
 
     fun updatePost(updatedModel: PostModel) {
         if (id != updatedModel.id) throw IllegalAccessException("Идентификаторы разные")
-        like = updatedModel.like
+        likeTxt = updatedModel.likeTxt
         like = updatedModel.like
         txt = updatedModel.txt
         share = updatedModel.share
+        shareTxt = updatedModel.shareTxt
 
     }
 

@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_tool_new_post.progressbar
 import kotlinx.android.synthetic.main.tool_more.*
 import kotlinx.coroutines.launch
 
+
 class PostActivity : AppCompatActivity() ,
     PostAdapter.OnLikeBtnClickListener, PostAdapter.OnRepostsBtnClickListener,
     PostAdapter.OnLoadMoreBtnClickListener {
@@ -41,7 +42,7 @@ class PostActivity : AppCompatActivity() ,
             val newData = App.repository.getPosts()
             swipeContainer.isRefreshing = false
             if (newData.isSuccessful) {
-                adapter.newRecentPosts(newData.body()!!)
+                adapter?.newRecentPosts(newData.body()!!)
             }
         }
     }
@@ -72,8 +73,6 @@ class PostActivity : AppCompatActivity() ,
             }
         }
     }
-
-
     override fun onLikeBtnClicked(item: PostModel, position: Int) {
         lifecycleScope.launch {
             item.likeActionPerforming = true

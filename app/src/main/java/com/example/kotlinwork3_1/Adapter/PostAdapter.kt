@@ -96,6 +96,7 @@ class PostAdapter (val list: MutableList<PostModel>) :
     fun newRecentPosts(list: List<PostModel>) {
         this.list.clear()
         this.list.addAll(list)
+        notifyDataSetChanged()
     }
 
 
@@ -107,7 +108,7 @@ class FooterViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.View
             loadMoreBtn.setOnClickListener {
                 loadMoreBtn.isEnabled = false
                 progressbar.visibility = View.VISIBLE
-                adapter.loadMoreBtnClickListener?.onLoadMoreBtnClickListener(adapter.list[adapter.list.size - 1].id.toLong(), adapter.list.size - 1)
+                adapter.loadMoreBtnClickListener?.onLoadMoreBtnClickListener(adapter.list[adapter.list.size - 1].id, adapter.list.size - 1)
 
 
             }
@@ -134,7 +135,7 @@ class RepostViewHolder(val adapter: PostAdapter, view: View) : RecyclerView.View
 
     fun bind(post: PostModel) {
         with(itemView) {
-            authorTv.text = post.author
+            authorTv.text = post.repost?.author
             contentRp.text = post.txt
             contentTv.text = post.repost?.txt
             likesTv.text = post.likeTxt.toString()

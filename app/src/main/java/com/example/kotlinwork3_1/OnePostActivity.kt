@@ -22,11 +22,11 @@ class OnePostActivity : AppCompatActivity() {
             print(post)
             authorTv.text = post?.author
             contentTv.text = post?.txt
-            likesTv.text = post?.like.toString()
-            repostsTv.text = post?.share.toString()
+            likesTv.text = post?.likeTxt.toString()
+            repostsTv.text = post?.shareTxt.toString()
             when {
                 post?.likeActionPerforming!! -> likeBtn.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                post?.like -> {
+                post.like -> {
                     likeBtn.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                     likesTv.setTextColor(
                         ContextCompat.getColor(
@@ -46,10 +46,10 @@ class OnePostActivity : AppCompatActivity() {
                 }
             }
             when {
-                post?.repostActionPerforming!! -> {
+                post.repostActionPerforming -> {
                     shareBtn.setImageResource(R.drawable.ic_baseline_share_24)
                 }
-                post?.share!! -> {
+                post.share -> {
                     shareBtn.setImageResource(R.drawable.ic_baseline_share_24)
                     repostsTv.setTextColor(
                         ContextCompat.getColor(
@@ -69,7 +69,7 @@ class OnePostActivity : AppCompatActivity() {
                 }
             }
             when (post.attachment?.mediaType) {
-                PostModel.AttachmentType.IMAGE -> loadImage(photoImg, post?.attachment.url)
+                PostModel.AttachmentType.IMAGE -> loadImage(photoImg, post.attachment.url)
             }
         }
     }
