@@ -14,14 +14,14 @@ import com.bumptech.glide.Glide
 import com.example.kotlinwork3_1.R
 import com.example.kotlinwork3_1.dto.PostModel
 import kotlinx.android.synthetic.main.activity_repost.*
-import kotlinx.android.synthetic.main.activity_tool_post.view.*
-import kotlinx.android.synthetic.main.activity_tool_post.view.authorTv
-import kotlinx.android.synthetic.main.activity_tool_post.view.contentTv
-import kotlinx.android.synthetic.main.activity_tool_post.view.likeBtn
-import kotlinx.android.synthetic.main.activity_tool_post.view.likesTv
-import kotlinx.android.synthetic.main.activity_tool_post.view.repostsTv
-import kotlinx.android.synthetic.main.activity_tool_post.view.shareBtn
-import kotlinx.android.synthetic.main.activity_tool_repost.view.*
+import kotlinx.android.synthetic.main.item_tool_post.view.*
+import kotlinx.android.synthetic.main.item_tool_repost.view.*
+import kotlinx.android.synthetic.main.item_tool_repost.view.authorTv
+import kotlinx.android.synthetic.main.item_tool_repost.view.contentTv
+import kotlinx.android.synthetic.main.item_tool_repost.view.likeBtn
+import kotlinx.android.synthetic.main.item_tool_repost.view.likesTv
+import kotlinx.android.synthetic.main.item_tool_repost.view.repostsTv
+import kotlinx.android.synthetic.main.item_tool_repost.view.shareBtn
 
 
 import kotlinx.android.synthetic.main.tool_more.view.*
@@ -40,11 +40,11 @@ class PostAdapter (val list: MutableList<PostModel>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == ITEM_TYPE_POST) {
             val postView =
-                LayoutInflater.from(parent.context).inflate(R.layout.activity_tool_post, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_tool_post, parent, false)
             PostViewHolder(this, postView)
         } else if (viewType == ITEM_TYPE_REPOST) {
             val repostView =
-                LayoutInflater.from(parent.context).inflate(R.layout.activity_repost, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_tool_repost, parent, false)
             RepostViewHolder(this, repostView)
         } else {
             FooterViewHolder(

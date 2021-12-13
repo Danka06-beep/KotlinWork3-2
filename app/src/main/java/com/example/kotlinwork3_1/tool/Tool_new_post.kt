@@ -7,6 +7,6 @@ import com.example.kotlinwork3_1.R
 class tool_new_post : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tool_new_post)
+        setContentView(R.layout.item_tool_new_post)
     }
 }
