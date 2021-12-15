@@ -22,7 +22,7 @@ class PostActivity : AppCompatActivity() ,
     PostAdapter.OnLikeBtnClickListener, PostAdapter.OnRepostsBtnClickListener,
     PostAdapter.OnLoadMoreBtnClickListener {
     private var dialog: ProgressDialog? = null
-    var adapter = PostAdapter(ArrayList<PostModel>())
+    var myadapter = PostAdapter(ArrayList<PostModel>())
     var items = ArrayList<PostModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class PostActivity : AppCompatActivity() ,
             val newData = App.repository.getPosts()
             swipeContainer.isRefreshing = false
             if (newData.isSuccessful) {
-                adapter?.newRecentPosts(newData.body()!!)
+                myadapter?.newRecentPosts(newData.body()!!)
             }
         }
     }
@@ -62,11 +62,12 @@ class PostActivity : AppCompatActivity() ,
                 with(container) {
                     items = result.body() as ArrayList<PostModel>
                     layoutManager = LinearLayoutManager(this@PostActivity)
-                    adapter = PostAdapter(items as MutableList<PostModel>).apply {
+                    adapter = myadapter.apply {
                         likeBtnClickListener = this@PostActivity
                         repostsBtnClickListener = this@PostActivity
                         loadMoreBtnClickListener = this@PostActivity
                     }
+                    myadapter.newRecentPosts(items)
                 }
             } else {
                 Toast.makeText(this@PostActivity, getString(R.string.error_occured), Toast.LENGTH_LONG).show()
@@ -102,6 +103,7 @@ class PostActivity : AppCompatActivity() ,
                 item.repostActionPerforming = false
             }
         }
+        refreshData()
     }
 
     override fun onLoadMoreBtnClickListener(last: Long, size: Int) {
@@ -115,7 +117,7 @@ class PostActivity : AppCompatActivity() ,
             if (response.isSuccessful) {
                 val newItems = response.body()!!
                 items.addAll(newItems)
-                adapter.newRecentPosts(items)
+                myadapter.newRecentPosts(items)
                 with(container) {
                     adapter?.notifyItemRangeInserted(size + newItems.size, newItems.size)
                 }
