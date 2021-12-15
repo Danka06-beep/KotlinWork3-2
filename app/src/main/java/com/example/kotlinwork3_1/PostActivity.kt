@@ -102,8 +102,9 @@ class PostActivity : AppCompatActivity() ,
                 val response = App.repository.createRepost(it, item)
                 item.repostActionPerforming = false
             }
+            refreshData()
         }
-        refreshData()
+
     }
 
     override fun onLoadMoreBtnClickListener(last: Long, size: Int) {
