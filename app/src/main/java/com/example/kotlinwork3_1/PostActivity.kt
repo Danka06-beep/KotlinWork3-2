@@ -12,8 +12,8 @@ import com.example.kotlinwork3_1.Adapter.PostAdapter
 import com.example.kotlinwork3_1.api.App
 import com.example.kotlinwork3_1.dto.PostModel
 import kotlinx.android.synthetic.main.activity_post.*
-import kotlinx.android.synthetic.main.activity_tool_new_post.*
-import kotlinx.android.synthetic.main.activity_tool_new_post.progressbar
+import kotlinx.android.synthetic.main.item_tool_new_post.*
+import kotlinx.android.synthetic.main.item_tool_new_post.progressbar
 import kotlinx.android.synthetic.main.tool_more.*
 import kotlinx.coroutines.launch
 
