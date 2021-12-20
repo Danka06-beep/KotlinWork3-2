@@ -74,8 +74,10 @@ class OnePostActivity : AppCompatActivity() {
         }
     }
     private fun loadImage(photoImg: ImageView, imageUrl: String) {
-        Glide.with(photoImg.context)
+        Glide
+            .with(photoImg.context)
             .load(imageUrl)
+            .centerCrop()
             .into(photoImg)
     }
 
