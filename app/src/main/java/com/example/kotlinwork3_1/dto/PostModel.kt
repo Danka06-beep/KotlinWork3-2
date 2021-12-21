@@ -46,6 +46,6 @@ data class PostModel(val id: Long = 0,
 
     data class AttachmentModel(val id: String, val mediaType: AttachmentType) {
         val url
-            get() = "$BASE_URL/api/v1/$id"
+            get() = "$BASE_URL/api/v1/static/$id"
     }
 }

@@ -19,6 +19,7 @@ interface Api {
     suspend fun authenticate(@Body authRequestParams: AuthRequestParams): Response<Token>
     @POST("api/v1/registration")
     suspend fun register(@Body registrationRequestParams: RegistrationRequestParams): Response<Token>
+    @Multipart
     @POST("api/v1/media")
     suspend fun uploadImage(@Part file: MultipartBody.Part): Response<PostModel.AttachmentModel>
     @GET("api/v1/posts")
