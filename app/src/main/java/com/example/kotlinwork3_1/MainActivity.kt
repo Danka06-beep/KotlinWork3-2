@@ -72,6 +72,20 @@ class MainActivity : AppCompatActivity() {
         getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).edit().putString(AUTHENTICATED_SHARED_KEY, token).apply()
 
 
+    private fun requestToken() {
+        with(GoogleApiAvailability.getInstance()) {
+            val code = isGooglePlayServicesAvailable(this@MainActivity)
+            if (code == ConnectionResult.SUCCESS) {
+                return@with
+            }
+            if (isUserResolvableError(code)) {
+                getErrorDialog(this@MainActivity, code, 9000).show()
+                return
+            }
+            root.longSnackbar(getString(R.string.google_play_unavailable))
+            return
+        }
+    }
     }
 
 
