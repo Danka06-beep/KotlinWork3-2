@@ -5,7 +5,7 @@ import com.example.kotlinwork3_1.Helper
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class FCMService : FirebaseMessagingService() {
+class FCMService: FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         val recipientId = message.data["recipientId"]
         val title = message.data["title"]
@@ -27,7 +27,7 @@ class FCMService : FirebaseMessagingService() {
                 }
             }
         }catch (e:Exception){
-            Toast.makeText(this , "error", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this , "ERROR", Toast.LENGTH_SHORT).show()
         }
 
     }

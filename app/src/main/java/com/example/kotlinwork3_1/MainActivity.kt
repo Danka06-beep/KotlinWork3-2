@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.kotlinwork3_1.api.App
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
 
@@ -20,10 +22,14 @@ class MainActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             when {
                 !isValidUsername(enterLogin.text.toString()) -> {
-                    Toast.makeText(this@MainActivity, getString(R.string.Invalidlogin), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity,
+                        getString(R.string.Invalidlogin),
+                        Toast.LENGTH_LONG).show()
                 }
                 !isValidPassword(enterPassword.text.toString()) -> {
-                    Toast.makeText(this@MainActivity, getString(R.string.InvalidPassword), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity,
+                        getString(R.string.InvalidPassword),
+                        Toast.LENGTH_LONG).show()
                 }
                 else -> {
                     lifecycleScope.launch {
@@ -38,12 +44,17 @@ class MainActivity : AppCompatActivity() {
                             dialog?.dismiss()
                             if (token.isSuccessful) {
                                 setUserAuth(requireNotNull(token.body()).token)
+                                requestToken()
                                 goToPost()
                             } else {
-                                Toast.makeText(this@MainActivity, getString(R.string.erorAuthorization), Toast.LENGTH_LONG).show()
+                                Toast.makeText(this@MainActivity,
+                                    getString(R.string.erorAuthorization),
+                                    Toast.LENGTH_LONG).show()
                             }
                         } catch (e: Exception) {
-                            Toast.makeText(this@MainActivity, getString(R.string.erorConnect), Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@MainActivity,
+                                getString(R.string.erorConnect),
+                                Toast.LENGTH_LONG).show()
                             dialog?.dismiss()
                         }
                     }
@@ -66,10 +77,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun authenticated(): Boolean = getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(AUTHENTICATED_SHARED_KEY, "")?.isNotEmpty() ?: false
+    private fun authenticated(): Boolean =
+        getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).getString(
+            AUTHENTICATED_SHARED_KEY,
+            "")?.isNotEmpty() ?: false
 
     private fun setUserAuth(token: String) =
-        getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).edit().putString(AUTHENTICATED_SHARED_KEY, token).apply()
+        getSharedPreferences(API_SHARED_FILE, Context.MODE_PRIVATE).edit()
+            .putString(AUTHENTICATED_SHARED_KEY, token).apply()
 
 
     private fun requestToken() {
@@ -82,10 +97,13 @@ class MainActivity : AppCompatActivity() {
                 getErrorDialog(this@MainActivity, code, 9000).show()
                 return
             }
-            root.longSnackbar(getString(R.string.google_play_unavailable))
+            Toast.makeText(this@MainActivity,
+                getString(R.string.google_play_unavailable),
+                Toast.LENGTH_LONG).show()
+            dialog?.dismiss()
             return
         }
     }
-    }
+}
 
 
