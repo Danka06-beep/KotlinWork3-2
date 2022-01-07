@@ -23,7 +23,7 @@ interface Repository {
     suspend fun registerPushToken(token: String) : Response<User>
     suspend fun getPostId(id: Long): Response<PostModel>
 
-    suspend fun authenticate(login: String, password: String):Response<Token>
+    suspend fun authenticate(login: String, password: String, tokenDevice: String):Response<Token>
 
     suspend fun register(login: String, password: String):Response<Token>
 }

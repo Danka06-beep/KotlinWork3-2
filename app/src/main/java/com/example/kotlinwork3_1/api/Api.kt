@@ -7,7 +7,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 
-data class AuthRequestParams(val username: String, val password: String)
+data class AuthRequestParams(val username: String, val password: String, val tokenDevice: String)
 
 data class Token(val token: String)
 

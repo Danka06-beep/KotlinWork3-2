@@ -11,9 +11,9 @@ import java.io.ByteArrayOutputStream
 
 class NetworkRepository(private val api: Api): Repository {
     private var token: String? = null
-    override suspend fun authenticate(login: String, password: String): Response<Token> {
-        token = api.authenticate(AuthRequestParams(username = login, password = password)).body()?.token
-        return api.authenticate(AuthRequestParams(username = login, password = password))
+    override suspend fun authenticate(login: String, password: String,tokenDevice: String): Response<Token> {
+        token = api.authenticate(AuthRequestParams(username = login, password = password,tokenDevice)).body()?.token
+        return api.authenticate(AuthRequestParams(username = login, password = password,tokenDevice))
     }
 
     override suspend fun register(login: String, password: String): Response<Token> =
