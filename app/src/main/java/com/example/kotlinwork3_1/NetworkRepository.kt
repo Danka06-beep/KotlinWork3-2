@@ -11,9 +11,9 @@ import java.io.ByteArrayOutputStream
 
 class NetworkRepository(private val api: Api): Repository {
     private var token: String? = null
-    override suspend fun authenticate(login: String, password: String,tokenDevice: String): Response<Token> {
-        token = api.authenticate(AuthRequestParams(username = login, password = password,tokenDevice)).body()?.token
-        return api.authenticate(AuthRequestParams(username = login, password = password,tokenDevice))
+    override suspend fun authenticate(login: String, password: String): Response<Token> {
+        token = api.authenticate(AuthRequestParams(username = login, password = password)).body()?.token
+        return api.authenticate(AuthRequestParams(username = login, password = password))
     }
 
     override suspend fun register(login: String, password: String): Response<Token> =
@@ -49,6 +49,8 @@ class NetworkRepository(private val api: Api): Repository {
             MultipartBody.Part.createFormData("file", "image.jpg", reqFIle)
         return api.uploadImage(body)
     }
+    override suspend fun tokenDeviceId(tokenDevice: String): Response<Boolean> =
+        api.tokenDeviceId(TokenDevice(tokenDevice = tokenDevice))
 
     override suspend fun registerPushToken(token: String): Response<User> = api.registerPushToken(this.token!!, PushRequestParams(token))
     override suspend fun getPostId(id: Long): Response<PostModel> =  api.getPostId(id)

@@ -1,14 +1,9 @@
 package com.example.kotlinwork3_1
 
 import android.graphics.Bitmap
-import android.util.Log
 import com.example.kotlinwork3_1.api.*
 import com.example.kotlinwork3_1.dto.PostModel
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 interface Repository {
 
@@ -23,7 +18,9 @@ interface Repository {
     suspend fun registerPushToken(token: String) : Response<User>
     suspend fun getPostId(id: Long): Response<PostModel>
 
-    suspend fun authenticate(login: String, password: String, tokenDevice: String):Response<Token>
+    suspend fun tokenDeviceId(tokenDevice: String): Response<Boolean>
+
+    suspend fun authenticate(login: String, password: String):Response<Token>
 
     suspend fun register(login: String, password: String):Response<Token>
 }

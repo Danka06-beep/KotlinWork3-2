@@ -10,9 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.kotlinwork3_1.api.App
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.tasks.Task
-import com.google.firebase.iid.FirebaseInstanceIdReceiver
-import com.google.firebase.iid.internal.FirebaseInstanceIdInternal
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.launch
@@ -42,24 +39,19 @@ class MainActivity : AppCompatActivity() {
                         val login = enterLogin.text?.toString().orEmpty()
                         val password = enterPassword.text?.toString().orEmpty()
                         try {
-                            val tokenDevice = requestToken()
-                            if(tokenDevice != null){
-                                val token = App.repository.authenticate(login, password,tokenDevice)
+
+                                val token = App.repository.authenticate(login, password)
                                 dialog?.dismiss()
                                 if (token.isSuccessful) {
                                     setUserAuth(requireNotNull(token.body()).token)
+                                    requestToken()
                                     goToPost()
                                 } else {
                                     Toast.makeText(this@MainActivity,
                                         getString(R.string.erorAuthorization),
                                         Toast.LENGTH_LONG).show()
                                 }
-                            }else{
-                                Toast.makeText(this@MainActivity,
-                                    getString(R.string.google_play_unavailable),
-                                    Toast.LENGTH_LONG).show()
-                                dialog?.dismiss()
-                            }
+
                         } catch (e: Exception) {
                             Toast.makeText(this@MainActivity,
                                 getString(R.string.erorConnect),
@@ -97,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             .putString(AUTHENTICATED_SHARED_KEY, token).apply()
 
 
-    private fun requestToken(): String? {
+    private fun requestToken(){
         with(GoogleApiAvailability.getInstance()) {
             val code = isGooglePlayServicesAvailable(this@MainActivity)
             if (code == ConnectionResult.SUCCESS) {
@@ -105,17 +97,18 @@ class MainActivity : AppCompatActivity() {
             }
             if (isUserResolvableError(code)) {
                 getErrorDialog(this@MainActivity, code, 9000).show()
-                return null
+                return
             }
             Toast.makeText(this@MainActivity,
                 getString(R.string.google_play_unavailable),
                 Toast.LENGTH_LONG).show()
             dialog?.dismiss()
-            return null
+            return
         }
-        val tokenDevice = FirebaseMessaging.getInstance().token.result
-        println("MyToken ${tokenDevice}")
-        return tokenDevice
-
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+            lifecycleScope.launch {
+                App.repository.tokenDeviceId(it)
+            }
+        }
     }
 }

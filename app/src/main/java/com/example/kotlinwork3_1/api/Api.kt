@@ -7,18 +7,25 @@ import retrofit2.Response
 import retrofit2.http.*
 
 
-data class AuthRequestParams(val username: String, val password: String, val tokenDevice: String)
+data class AuthRequestParams(val username: String, val password: String)
 
 data class Token(val token: String)
 
 data class RegistrationRequestParams(val username: String, val password: String)
 
+data class TokenDevice(val tokenDevice: String)
+
 interface Api {
+
+    @POST("api/v1/tokenDevice")
+    suspend fun tokenDeviceId(@Body tokenDevice: TokenDevice): Response<Boolean>
 
     @POST("api/v1/authentication")
     suspend fun authenticate(@Body authRequestParams: AuthRequestParams): Response<Token>
+
     @POST("api/v1/registration")
     suspend fun register(@Body registrationRequestParams: RegistrationRequestParams): Response<Token>
+
     @Multipart
     @POST("api/v1/media")
     suspend fun uploadImage(@Part file: MultipartBody.Part): Response<PostModel.AttachmentModel>
